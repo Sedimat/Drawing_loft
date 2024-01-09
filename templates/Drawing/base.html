@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drawing Loft</title>
+    {% load static %}
+    <link href="{% static 'Drawing/style.css' %}" rel="stylesheet">
+</head>
+<body>
+<header>
+    <table class="tab_head">
+        <tr>
+            <td id="td_head"><a class="id" href="{% url 'index' %}">Головна</a></td>
+            <td id="td_head"><a class="id" href="#">Про нас</a></td>
+            <td id="td_head"><a class="id" href="{% url 'admin:index' %}">Адмінка</a></td>
+        </tr>
+    </table>
+
+</header>
+
+<div class="content">
+    <div class="cont_left">
+        <h1 class="title">Модулі:</h1>
+        <div class="link">
+
+        </div>
+        <div class="link">
+
+        </div>
+
+    </div>
+
+    <div class="cont_right">
+
+    </div>
+
+</div>
+
+<footer>
+
+</footer>
+
+</body>
+</html>
