@@ -1,0 +1,50 @@
+{% extends "Drawing/base.html" %}
+
+{% block content %}
+
+<div class="form_div">
+<form enctype="multipart/form-data" action="#" method="POST">
+    {% csrf_token %}
+
+    <label for="phone0" class="title1">Довжина столу:</label>
+    <input type="number" class="table_basket1" name="length_table" id="phone0" value="1000">
+
+    <label for="address0" class="title1">Ширина столу:</label>
+    <input type="number" class="table_basket1" name="width_table" id="address0" value="600">
+
+    <label for="n1" class="title1">Висота столу:</label>
+    <input type="number" class="table_basket1" name="height_table" id="n1" value="850">
+
+    <label for="n2" class="title1">Товщина стільниці:</label>
+    <input type="number" class="table_basket1" name="thickness" id="n2" value="600">
+
+    <label for="n3" class="title1">Труба основна</label>
+    <input type="number" class="table_basket1" name="tube" id="n3" value="600">
+
+    <label for="n3v1" class="title1">Отвори від краю</label>
+    <input type="number" class="table_basket1" name="tube" id="n3v1" value="600">
+
+    <label for="n4" class="title1">Довжина рожка:</label>
+    <input type="number" class="table_basket1" name="rog" id="n4" value="600">
+
+    <label for="n5" class="title1">Труба рожка:</label>
+    <input type="number" class="table_basket1" name="rog_tube" id="n5" value="600">
+
+    <label for="n6" class="title1">Відстань до рожка:</label>
+    <input type="number" class="table_basket1" name="rog_coor" id="n6" value="600">
+
+    <button type="submit" id="knopka" >Згенерувати</button>
+
+
+    def table(name, thickness, height_table, width_table, length_table, tubex, tubey, long_circle, rog, rog_tubex,
+          rog_tubey, rog_coor):
+</form>
+
+</div>
+<!--<div class="news">-->
+<!--   <h1 class="title">Стіл прямокутний:</h1>-->
+<!--</div>-->
+
+
+
+{% endblock %}

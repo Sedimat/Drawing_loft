@@ -5,6 +5,13 @@
     <title>Drawing Loft</title>
     {% load static %}
     <link href="{% static 'Drawing/style.css' %}" rel="stylesheet">
+    <style>
+        .cont_right {
+            background-image: url('{% static "Drawing/img/back0.jpg" %}');
+            background-size: cover; /* Розтягує фон, щоб відповідати розмірам контейнера */
+            background-position: center; /* Центрує фон */
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -23,14 +30,24 @@
         <h1 class="title">Модулі:</h1>
         <div class="link">
 
+        <a class="title" href="{% url 'table' %}">Стіл прямокутний</a>
+
         </div>
+
         <div class="link">
 
         </div>
 
+
     </div>
 
     <div class="cont_right">
+
+        {% block content %}
+
+
+        {% endblock %}
+
 
     </div>
 
