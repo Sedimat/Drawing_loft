@@ -27,10 +27,43 @@
 
 <div class="content">
     <div class="cont_left">
+
+        <div class="log">
+
+            {% if user.is_authenticated %}
+
+                <p class="title">{{ user.username }}</p>
+                <img class="avatar" src="{{ user_profile.avatar.url }}" style=" width:100px;">
+                    <form enctype="multipart/form-data" action="{% url 'index'%}" method="POST">
+                        {% csrf_token %}
+                        <input type="file" id="file" name="avatar">
+                        <button type="submit" id="del_1bask">змінити аватарку</button>
+                    </form>
+
+            {% else %}
+                <p class="title">Авторизація</p>
+                <form method="POST" role="form" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <input type="text" class="table_basket1" name="username" id="username0" placeholder="Ваш нікнейм">
+                    <input type="password" class="table_basket1" name="password" id="password0" placeholder="Пароль">
+
+                    <button type="submit" id="knopka" >Війти</button>
+
+                </form>
+
+            {% endif %}
+
+        </div>
+
+        {% block content1 %}
+
+
+        {% endblock %}
+
         <h1 class="title">Модулі:</h1>
         <div class="link">
 
-        <a class="title" href="{% url 'table' %}">Стіл прямокутний</a>
+            <a class="title" href="{% url 'table' %}">Стіл прямокутний</a>
 
         </div>
 

@@ -1,3 +1,4 @@
+import os
 import string
 import random
 
@@ -721,4 +722,5 @@ def table_gener(size):
     # Закрываем объект Canvas, сохраняя изменения в файле
     pdf_canvas.save()
 
-    return f"{BASE_DIR}/func/1/table_{random_prefix}.pdf"
+    return os.path.join(BASE_DIR, 'func', '1', f'table_{random_prefix}.pdf')
+    # return f"{BASE_DIR}/func/1/table_{random_prefix}.pdf"

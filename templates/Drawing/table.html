@@ -79,6 +79,9 @@
 
 <div class="prev_div">
     <h1 class="title1">Текст</h1>
+    {% for dr in drawing %}
+        <a href="{% url 'download_file' dr.id %}" >{{ dr.id }}</a>
+    {% endfor %}
 
 </div>
 <!--<div class="news">-->

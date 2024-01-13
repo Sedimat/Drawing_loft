@@ -155,4 +155,8 @@ input[type="radio"]:checked + .color-square {
     text-decoration: none;
 }
 
+.log{
+    margin: 10px 10px 10px 20px;
+}
+
 margin: top right bottom left;
