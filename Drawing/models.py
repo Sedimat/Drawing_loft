@@ -17,6 +17,8 @@ class UserProfile(models.Model):
 class DrawingTables(models.Model):
     id_user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Користувач")
     drawing = models.FileField(upload_to='drw', default='drw/test.pdf')
+    picture = models.ImageField(upload_to='drw_p', default='drw_p/test.jpg')
+    details = models.TextField(verbose_name="Інформація", default='test')
 
     def __str__(self):
         return f'Кресленя'

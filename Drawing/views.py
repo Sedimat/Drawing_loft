@@ -5,31 +5,39 @@ from django.http import FileResponse
 from django.shortcuts import render, redirect, get_object_or_404
 import os
 
-import draw_table as draw # тут все правильно
+import draw_table as draw  # тут все правильно
 
 from .models import DrawingTables, UserProfile
 
 
 # Create your views here.
 
-def index(request):
-    if request.user.username:
+def userinfo(request):
+    try:
         user = User.objects.get(username=request.user.username)
         user_profile = UserProfile.objects.get(id_user=user.id)
+        dict_user = {"user": user,
+                     "user_profile": user_profile}
 
+        return dict_user
+    except:
+        return None
+
+
+def index(request):
+    context = {}
+    if request.user.username:
+        context.update(userinfo(request))
         if request.method == "POST":
+            user = User.objects.get(username=request.user.username)
             avatar = request.FILES['avatar']  # Довжина столу
             user_prof = UserProfile.objects.get(id_user=user.id)
             user_prof.avatar = avatar
             user_prof.save()
 
-        context = {
-            "user": user,
-            "user_profile": user_profile,
-        }
-        return render(request, 'Drawing/base.html', context=context)
+        return render(request, 'Drawing/index.html', context=context)
 
-    return render(request, 'Drawing/base.html')
+    return render(request, 'Drawing/index.html')
 
 
 def table(request):
@@ -60,13 +68,11 @@ def table(request):
 
             drawing0.save()
 
-
             print(f"Файл успішно записано.table_{a}.pdf")
         except FileNotFoundError:
             print(f"Файл {path1} не знайдено.")
         except Exception as e:
             print(f"Виникла помилка при записі файлу: {e}")
-
 
         try:
             os.remove(path1)
@@ -76,13 +82,8 @@ def table(request):
         except Exception as e:
             print(f"Виникла помилка при видаленні файлу: {e}")
 
-    user = User.objects.get(username=request.user.username)
-    drawing = DrawingTables.objects.filter(id_user=user.id)
-
-    buf = {"drawing": drawing}
-
-    context.update(buf)
-
+    if request.user.username:
+        context.update(userinfo(request))
 
     return render(request, 'Drawing/table.html', context=context)
 
@@ -99,3 +100,15 @@ def download_file(request, id=None):
     response = FileResponse(open(file_path, 'rb'))
     response['Content-Disposition'] = f'attachment; filename="Table_{a}"'
     return response
+
+
+def user(request):
+    context = {}
+    if request.user.username:
+        user = User.objects.get(username=request.user.username)
+        drawing = DrawingTables.objects.filter(id_user=user.id)
+        buf = {"drawing": drawing}
+        context.update(userinfo(request))
+        context.update(buf)
+
+    return render(request, 'Drawing/user.html', context=context)

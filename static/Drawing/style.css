@@ -4,7 +4,6 @@ body{
     min-height: 100vh;
     padding: 0px;
     margin: 0px;
-    background-color: darkgray;
 }
 
 header{
@@ -25,7 +24,7 @@ header{
     min-width: 350px;
     max-width: 350px;
     width: 20%;
-    background-color: #f2d174;
+    background-color: #f2d174DD;
 
 }
 .cont_right{
@@ -63,7 +62,6 @@ footer{
     font-family: sans-serif;
     margin: 10px;
     padding: 10px;
-
 }
 
 .title1{
@@ -71,16 +69,18 @@ footer{
     font-size: 18px;
     text-decoration: none;
     font-family: sans-serif;
-    margin: 10px;
-    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+    margin: 0px;
+    padding: 10px;
 }
+
 .news{
     float: left;
-    background-color: yellow;
+    border-radius: 7px;
+    background-color: #083c5e;
     margin: 10px 0px 10px 10px;
+    padding: 10px;
     min-width: 300px;
-    width: 24%;
-    height: 200px;
+    height: 160px;
 }
 
 .link{
@@ -121,19 +121,30 @@ input[type="radio"]:checked + .color-square {
 .table_basket1{
     border: none;
     background-color: #434647;
-    width: 290px;
+    width: 330px;
     font-family: sans-serif;
     font-size: 16px;
     color: white;
-    padding: 10px 0px 10px 10px;
-    margin: 10px 0px 10px 0px;
+    padding: 10px;
+    margin: 0px;
+}
+
+.table_basket2{
+    border: none;
+    background-color: #434647;
+    width: 230px;
+    font-family: sans-serif;
+    font-size: 16px;
+    color: white;
+    padding: 10px;
+    margin: 0px;
 }
 
 .form_div{
     float: left;
     background-color: #205bbaDD;
     margin: 10px;
-    width: 300px;
+    width: 350px;
     padding: 10px 20px 10px 20px;
     margin: 10px 10px 10px 50px;
 }
@@ -148,15 +159,47 @@ input[type="radio"]:checked + .color-square {
     margin: 10px 10px 10px 10px;
 }
 #knopka{
-    margin: 10px 0px 10px 0px;
-    padding: 5px;
+    margin: 0px;
+    padding: 0px 10px 0px 10px;
+    color: black;
     background-color: #27c400;
     border-radius: 5px;
     text-decoration: none;
 }
 
+#knopka1{
+    margin: 0px;
+    padding: 5px 10px 5px 10px;
+    text-decoration: none;
+    color: black;
+    background-color: orange;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
 .log{
-    margin: 10px 10px 10px 20px;
+    margin: 0px;
+}
+
+.table_user{
+    background-color: #172835;
+    width: 100%;
+    font-family: sans-serif;
+    font-size: 18px;
+    color: azure;
+    margin: 0px;
+}
+
+.table_login{
+    background-color: #172835;
+    width: 350px;
+    margin: 0px;
+    padding: 0px;
+}
+
+#file{
+    max-width: 110px;
+    float: left;
 }
 
 margin: top right bottom left;

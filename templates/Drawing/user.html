@@ -1,0 +1,59 @@
+{% extends "Drawing/base.html" %}
+
+{% block content1 %}
+
+
+<div class="log">
+
+    {% if user.is_authenticated %}
+    <table class="table_user">
+        <tr>
+            <td width="100" style="text-align: center;">{{ user.username }}</td>
+            <td><a id="knopka" href="{% url 'logout' %}">Вийти</a></td>
+        </tr>
+
+        <tr>
+            <td><img class="avatar" src="{{ user_profile.avatar.url }}" width="100"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <form enctype="multipart/form-data" action="{% url 'index'%}" method="POST">
+            {% csrf_token %}
+                <td><input type="file" id="file" name="avatar" width="80"></td>
+                <td><button type="submit" id="knopka">Змінити аватарку</button></td>
+            </form>
+        </tr>
+    </table>
+
+    {% else %}
+
+    <p class="title">Авторизація</p>
+    <form method="POST" role="form" action="{% url 'login' %}">
+        {% csrf_token %}
+        <input type="text" class="table_basket1" name="username" id="username0" placeholder="Ваш нікнейм">
+        <input type="password" class="table_basket1" name="password" id="password0" placeholder="Пароль">
+
+        <button type="submit" id="knopka">Війти</button>
+
+    </form>
+
+    {% endif %}
+
+</div>
+
+
+{% endblock %}
+
+{% block content %}
+
+{% for dr in drawing %}
+    {% load static %}
+    <div class="news" style="background-image: url('{{ dr.picture.url }}'); background-size: cover; width: 300px;">
+        <a id="knopka" href="{% url 'download_file' dr.id %}">Завантажити: {{ dr.id }}</a>
+        <p class="title1">{{ dr.details }}</p>
+    </div>
+{% endfor %}
+
+
+
+{% endblock %}

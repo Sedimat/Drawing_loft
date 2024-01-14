@@ -2,14 +2,19 @@
 
 {% block content1 %}
 
-<p class="title">Авторизація</p>
-<form class="navbar-form navbar-right" method="POST" role="form" action="{% url 'login' %}">
-    {% csrf_token %}
+<form method="POST" role="form" action="{% url 'login' %}">
+        {% csrf_token %}
 
-    <input type="text" class="table_basket1" name="username" id="username0" placeholder="Ваш нікнейм">
-    <input type="password" class="table_basket1" name="password" id="password0" placeholder="Пароль">
-
-    <button type="submit" class="rega">Війти</button>
-</form>
+    <table class="table_login">
+        <tr>
+            <td width="200"><input type="text" class="table_basket2" name="username" id="username0" placeholder="Ваш нікнейм"></td>
+            <td><button type="submit" id="knopka">Війти</button></td>
+        </tr>
+        <tr>
+            <td><input type="password" class="table_basket2" name="password" id="password0" placeholder="Пароль"></td>
+            <td><a id="knopka1" href="{% url 'logout' %}">Рега</a></td>
+        </tr>
+    </table>
+    </form>
 
 {% endblock %}

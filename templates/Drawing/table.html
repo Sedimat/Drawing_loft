@@ -2,28 +2,30 @@
 
 {% block content %}
 
+{% if user.is_authenticated %}
+
 <div class="form_div">
-<form enctype="multipart/form-data" action="{% url 'table' %}" method="POST">
-    {% csrf_token %}
+    <form enctype="multipart/form-data" action="{% url 'table' %}" method="POST">
+        {% csrf_token %}
 
-    <label for="phone0" class="title1">Довжина столу:</label>
-    <input type="number" class="table_basket1" name="length_table" id="phone0" value="1000">
+        <label for="phone0" class="title1">Довжина столу:</label>
+        <input type="number" class="table_basket1" name="length_table" id="phone0" value="1000">
 
-    <label for="address0" class="title1">Ширина столу:</label>
-    <input type="number" class="table_basket1" name="width_table" id="address0" value="600">
+        <label for="address0" class="title1">Ширина столу:</label>
+        <input type="number" class="table_basket1" name="width_table" id="address0" value="600">
 
-    <label for="n1" class="title1">Висота столу:</label>
-    <input type="number" class="table_basket1" name="height_table" id="n1" value="850">
+        <label for="n1" class="title1">Висота столу:</label>
+        <input type="number" class="table_basket1" name="height_table" id="n1" value="850">
 
-    <label for="n2" class="title1">Товщина стільниці:</label>
-    <select name="thickness" id="n2" class="table_basket1">
+        <label for="n2" class="title1">Товщина стільниці:</label>
+        <select name="thickness" id="n2" class="table_basket1">
             <option value="18">18 мм</option>
             <option value="36">36 мм</option>
 
-    </select>
+        </select>
 
-    <label for="n3" class="title1">Труба основна:</label>
-    <select name="tube" id="n3" class="table_basket1">
+        <label for="n3" class="title1">Труба основна:</label>
+        <select name="tube" id="n3" class="table_basket1">
             <option value="40,20">40x20 мм</option>
             <option value="50,25">50x25 мм</option>
             <option value="50,50">50x50 мм</option>
@@ -32,61 +34,103 @@
             <option value="80,30">80x30 мм</option>
             <option value="80,40">80x40 мм</option>
 
-    </select>
+        </select>
 
-
-    <label for="n3v1" class="title1">Отвори від краю:</label>
-    <select name="long_circle" id="n3v1" class="table_basket1">
+        <label for="n3v1" class="title1">Отвори від краю:</label>
+        <select name="long_circle" id="n3v1" class="table_basket1">
             <option value="15">15 мм</option>
             <option value="25">25 мм</option>
 
-    </select>
+        </select>
 
-
-    <label for="n4" class="title1">Довжина рожка:</label>
-    <select name="rog" id="n4" class="table_basket1">
+        <label for="n4" class="title1">Довжина рожка:</label>
+        <select name="rog" id="n4" class="table_basket1">
             <option value="150">150 мм</option>
             <option value="200">200 мм</option>
             <option value="250">250 мм</option>
 
-    </select>
+        </select>
 
-
-    <label for="n5" class="title1">Труба рожка:</label>
-    <select name="rog_tube" id="n5" class="table_basket1">
+        <label for="n5" class="title1">Труба рожка:</label>
+        <select name="rog_tube" id="n5" class="table_basket1">
             <option value="20,20">20x20</option>
             <option value="25,20">25x25</option>
             <option value="30,30">30x30</option>
 
-    </select>
+        </select>
 
-    <label for="n6" class="title1">Відстань до рожка:</label>
-    <select name="rog_coor" id="n6" class="table_basket1">
+        <label for="n6" class="title1">Відстань до рожка:</label>
+        <select name="rog_coor" id="n6" class="table_basket1">
             <option value="100">100 мм</option>
             <option value="150">150 мм</option>
             <option value="200">200 мм</option>
 
-    </select>
+        </select>
 
-    <button type="submit" id="knopka" >Згенерувати</button>
+        <button type="submit" id="knopka">Згенерувати</button>
 
-
-<!--    def table(name, thickness, height_table, width_table, length_table, tubex, tubey, long_circle, rog, rog_tubex,-->
-<!--          rog_tubey, rog_coor):-->
-</form>
+    </form>
 
 </div>
 
-<div class="prev_div">
-    <h1 class="title1">Текст</h1>
-    {% for dr in drawing %}
-        <a href="{% url 'download_file' dr.id %}" >{{ dr.id }}</a>
-    {% endfor %}
+
+{% else %}
+<div class="form_div">
+    <p class="title1">Щоб згенерувати кресленя потрібо авторизуватись</p>
+    <p class="title">Авторизація</p>
+    <form method="POST" role="form" action="{% url 'login' %}">
+        {% csrf_token %}
+        <input type="text" class="table_basket1" name="username" id="username0" placeholder="Ваш нікнейм">
+        <input type="password" class="table_basket1" name="password" id="password0" placeholder="Пароль">
+
+        <button type="submit" id="knopka">Війти</button>
+
+    </form>
+    </div>
+
+{% endif %}
+
+
+{% endblock %}
+
+{% block content1 %}
+<div class="log">
+
+    {% if user.is_authenticated %}
+    <table class="table_user">
+        <tr>
+            <td><img class="avatar" src="{{ user_profile.avatar.url }}" width="60"></td>
+            <td class="title1" >{{ user.username }}</td>
+            <td><a class="title1" href="{% url 'user' %}">Кабінет</a></td>
+            <td><a id="knopka" href="{% url 'logout' %}">Вийти</a></td>
+        </tr>
+    </table>
+
+    {% else %}
+
+    <form method="POST" role="form" action="{% url 'login' %}">
+        {% csrf_token %}
+
+    <table class="table_login">
+        <tr>
+            <td width="200"><input type="text" class="table_basket2" name="username" id="username0" placeholder="Ваш нікнейм"></td>
+            <td><button type="submit" id="knopka">Війти</button></td>
+        </tr>
+        <tr>
+            <td><input type="password" class="table_basket2" name="password" id="password0" placeholder="Пароль"></td>
+            <td><a id="knopka1" href="{% url 'logout' %}">Рега</a></td>
+        </tr>
+    </table>
+    </form>
+
+    {% endif %}
 
 </div>
-<!--<div class="news">-->
-<!--   <h1 class="title">Стіл прямокутний:</h1>-->
-<!--</div>-->
 
+<h1 class="title">Модулі:</h1>
+    <div class="link">
+
+        <a class="title" href="{% url 'table' %}">Стіл прямокутний</a>
+    </div>
 
 {% endblock %}
