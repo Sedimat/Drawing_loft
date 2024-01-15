@@ -14,7 +14,7 @@
 
         <tr>
             <td><img class="avatar" src="{{ user_profile.avatar.url }}" width="100"></td>
-            <td></td>
+            <td>{{ user_profile.info }}</td>
         </tr>
         <tr>
             <form enctype="multipart/form-data" action="{% url 'index'%}" method="POST">
@@ -48,12 +48,14 @@
 
 {% for dr in drawing %}
     {% load static %}
-    <div class="news" style="background-image: url('{{ dr.picture.url }}'); background-size: cover; width: 300px;">
-        <a id="knopka" href="{% url 'download_file' dr.id %}">Завантажити: {{ dr.id }}</a>
-        <p class="title1">{{ dr.details }}</p>
+    <div class="news" style="background-image: url('{{ dr.pictur.url }}'); background-size: cover; width: 300px;">
+        <p class="title2">Ширина: {{ dr.details|slice:":3" }}</p>
+        <p class="title2">Висота: {{ dr.details|slice:"4:7" }}</p>
+        <p class="title2">Труба основна: {{ dr.details|slice:"8:" }}</p>
+        <p class="title2">Час створення: {{ dr.published_date }}</p>
+        <a id="knopka2" href="{% url 'download_file' dr.id %}">Завантажити: Pdf</a>
     </div>
+
 {% endfor %}
-
-
 
 {% endblock %}

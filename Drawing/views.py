@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 import os
 
 import draw_table as draw  # тут все правильно
+from django.utils import timezone
 
 from .models import DrawingTables, UserProfile
 
@@ -59,16 +60,18 @@ def table(request):
                      int(rog_coor)]
 
         path1 = draw.table_gener(list_size)
-        a = path1[-10:-4]
+        name = path1[-10:-4]
 
         try:
             drawing0 = DrawingTables(id_user=request.user)
+            drawing0.published_date = timezone.now()
+            drawing0.details = f"{width_table},{height_table},{tube[:2]}x{tube[3:]}"
             with open(path1, 'rb') as file:
-                drawing0.drawing.save(f'table_{a}.pdf', File(file))
+                drawing0.drawing.save(f'table_{name}.pdf', File(file))
 
             drawing0.save()
 
-            print(f"Файл успішно записано.table_{a}.pdf")
+            print(f"Файл успішно записано.table_{name}.pdf")
         except FileNotFoundError:
             print(f"Файл {path1} не знайдено.")
         except Exception as e:
@@ -81,6 +84,8 @@ def table(request):
             print(f"Файл {path1} не знайдено.")
         except Exception as e:
             print(f"Виникла помилка при видаленні файлу: {e}")
+
+        return redirect('user')
 
     if request.user.username:
         context.update(userinfo(request))
@@ -106,8 +111,10 @@ def user(request):
     context = {}
     if request.user.username:
         user = User.objects.get(username=request.user.username)
-        drawing = DrawingTables.objects.filter(id_user=user.id)
-        buf = {"drawing": drawing}
+        drawing = DrawingTables.objects.filter(id_user=user.id).order_by("-published_date")
+        len_drw = len(drawing)
+        buf = {"drawing": drawing,
+               "len_drw": len_drw}
         context.update(userinfo(request))
         context.update(buf)
 

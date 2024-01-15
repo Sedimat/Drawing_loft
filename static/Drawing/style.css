@@ -70,15 +70,24 @@ footer{
     text-decoration: none;
     font-family: sans-serif;
     margin: 0px;
-    padding: 10px;
+    padding: 0px;
+}
+
+.title2{
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+    font-family: sans-serif;
+    margin: 10px 0px 10px 10px;
+    padding: 0px;
 }
 
 .news{
     float: left;
     border-radius: 7px;
-    background-color: #083c5e;
+    background-color: #083c5eDD;
     margin: 10px 0px 10px 10px;
-    padding: 10px;
+    padding: 0px;
     min-width: 300px;
     height: 160px;
 }
@@ -173,6 +182,16 @@ input[type="radio"]:checked + .color-square {
     text-decoration: none;
     color: black;
     background-color: orange;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+#knopka2{
+    margin: 10px;
+    padding: 5px 10px 5px 10px;
+    text-decoration: none;
+    color: black;
+    background-color: #27c400;
     border-radius: 5px;
     text-decoration: none;
 }

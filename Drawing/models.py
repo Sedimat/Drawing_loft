@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
+
 
 class UserProfile(models.Model):
     id_user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Користувач")
@@ -19,6 +21,8 @@ class DrawingTables(models.Model):
     drawing = models.FileField(upload_to='drw', default='drw/test.pdf')
     picture = models.ImageField(upload_to='drw_p', default='drw_p/test.jpg')
     details = models.TextField(verbose_name="Інформація", default='test')
+    published_date = models.DateTimeField(default=timezone.now, verbose_name="Час")
+
 
     def __str__(self):
         return f'Кресленя'
