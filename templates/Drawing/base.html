@@ -5,6 +5,7 @@
     <title>Drawing Loft</title>
     {% load static %}
     <link href="{% static 'Drawing/style.css' %}" rel="stylesheet">
+    <link rel="icon" href="{% static 'Drawing/img/fav.png' %}" type="image/x-icon">
     <style>
         body {
             background-image: url('{% static "Drawing/img/back0.jpg" %}');
@@ -31,6 +32,20 @@
 
 
         {% endblock %}
+
+        <h1 class="title">Модулі креслення:</h1>
+
+    <a href="{% url 'table' %}">
+        <div class="link" style="background-image: url('{% static 'Drawing/img/fon.jpg' %}');">
+            <h1 class="title3">Стіл прямокутний: Square</h1>
+        </div>
+    </a>
+
+   <a href="{% url 'table' %}">
+        <div class="link" style="background-image: url('{% static 'Drawing/img/fon.jpg' %}');">
+            <h1 class="title3">Стіл V подібний: Vee</h1>
+        </div>
+    </a>
 
     </div>
 

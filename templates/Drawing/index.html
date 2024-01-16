@@ -10,7 +10,7 @@
             <td><img class="avatar" src="{{ user_profile.avatar.url }}" width="60"></td>
             <td class="title1" >{{ user.username }}</td>
             <td><a class="title1" href="{% url 'user' %}">Кабінет</a></td>
-            <td><a id="knopka" href="{% url 'logout' %}">Вийти</a></td>
+            <td><a id="knopka0" href="{% url 'logout' %}">Вийти</a></td>
         </tr>
     </table>
 
@@ -35,16 +35,20 @@
 
 </div>
 
-<h1 class="title">Модулі:</h1>
-    <div class="link">
-
-        <a class="title" href="{% url 'table' %}">Стіл прямокутний</a>
-    </div>
 
 {% endblock %}
 
 
 {% block content %}
+
+
+{% for n in news %}
+    <div class="news_post">
+        <h1 class="title3">{{ n.title}}</h1>
+        <img class="img_news" src="{{ n.picture.url }}">
+        <p class="title2">{{ n.details }}</p>
+    </div>
+{% endfor %}
 
 {% if user.is_authenticated %}
 

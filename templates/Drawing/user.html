@@ -9,7 +9,7 @@
     <table class="table_user">
         <tr>
             <td width="100" style="text-align: center;">{{ user.username }}</td>
-            <td><a id="knopka" href="{% url 'logout' %}">Вийти</a></td>
+            <td><a id="knopka0" href="{% url 'logout' %}">Вийти</a></td>
         </tr>
 
         <tr>
@@ -46,7 +46,18 @@
 
 {% block content %}
 
-{% for dr in drawing %}
+<h1 class="title3">Останій створений:</h1>
+    <div class="news" style="background-image: url('{{ dr.pictur.url }}'); background-size: cover; width: 300px;">
+        <p class="title2">Ширина: {{ drawing_first.details|slice:":3" }}</p>
+        <p class="title2">Висота: {{ drawing_first.details|slice:"4:7" }}</p>
+        <p class="title2">Труба основна: {{ drawing_first.details|slice:"8:" }}</p>
+        <p class="title2">Час створення: {{ drawing_first.published_date }}</p>
+        <a id="knopka2" href="{% url 'download_file' drawing_first.id %}">Завантажити: Pdf</a>
+    </div>
+
+<hr>
+
+{% for dr in drawing_all %}
     {% load static %}
     <div class="news" style="background-image: url('{{ dr.pictur.url }}'); background-size: cover; width: 300px;">
         <p class="title2">Ширина: {{ dr.details|slice:":3" }}</p>

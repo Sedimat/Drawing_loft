@@ -8,7 +8,7 @@ import os
 import draw_table as draw  # тут все правильно
 from django.utils import timezone
 
-from .models import DrawingTables, UserProfile
+from .models import DrawingTables, UserProfile, News
 
 
 # Create your views here.
@@ -26,7 +26,8 @@ def userinfo(request):
 
 
 def index(request):
-    context = {}
+    news = News.objects.all().order_by("-published_date")
+    context = {"news": news}
     if request.user.username:
         context.update(userinfo(request))
         if request.method == "POST":
@@ -45,8 +46,25 @@ def table(request):
     context = {}
     if request.method == "POST":
         length_table = request.POST.get('length_table')  # Довжина столу
+        if not 999 < int(length_table) < 2001:
+            context.update(userinfo(request))
+            context.update({"text": "Довжина столу не може бути більше 2000 мм або менше 1000 мм"})
+            return render(request, 'Drawing/table.html', context=context)
+
         width_table = request.POST.get('width_table')  # Ширина столу
+
+        if not 499 < int(width_table) < 1201:
+            context.update(userinfo(request))
+            context.update({"text": "Ширина столу не може бути більше 1200 мм або менше 500 мм"})
+            return render(request, 'Drawing/table.html', context=context)
+
         height_table = request.POST.get('height_table')  # Висота столу
+
+        if not 749 < int(height_table) < 1201:
+            context.update(userinfo(request))
+            context.update({"text": "Висота столу не може бути більше 1200 мм або менше 750 мм"})
+            return render(request, 'Drawing/table.html', context=context)
+
         thickness = request.POST.get('thickness')  # Товщина стільниці
         tube = request.POST.get('tube')  # Труба основна
         long_circle = request.POST.get('long_circle')  # Отвори від краю
@@ -112,10 +130,14 @@ def user(request):
     if request.user.username:
         user = User.objects.get(username=request.user.username)
         drawing = DrawingTables.objects.filter(id_user=user.id).order_by("-published_date")
-        len_drw = len(drawing)
-        buf = {"drawing": drawing,
-               "len_drw": len_drw}
+        if len(drawing):
+            draw ={
+               "drawing_first": drawing[0],
+               "drawing_all": drawing[1:],
+               "len_drawing": len(drawing),
+               }
+            context.update(draw)
+
         context.update(userinfo(request))
-        context.update(buf)
 
     return render(request, 'Drawing/user.html', context=context)

@@ -31,4 +31,18 @@ class DrawingTables(models.Model):
         verbose_name = "Кресленя"
         verbose_name_plural = "Кресленя"
 
+class News(models.Model):
+    title = models.CharField(max_length=100, verbose_name="Заголовок")
+    picture = models.ImageField(upload_to='post_img', default='post_img/news.jpg', verbose_name="Зображення",)
+    details = models.TextField(default='test', verbose_name="Інформація",)
+    published_date = models.DateTimeField(default=timezone.now, verbose_name="Час")
+
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = "Новина"
+        verbose_name_plural = "Новини"
+
 # Create your models here.

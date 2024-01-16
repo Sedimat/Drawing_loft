@@ -1,20 +1,26 @@
 {% extends "Drawing/base.html" %}
+{% load static %}
 
 {% block content %}
 
 {% if user.is_authenticated %}
 
+
+
 <div class="form_div">
+
+    <h1 class="title2">{{ text }}</h1>
+
     <form enctype="multipart/form-data" action="{% url 'table' %}" method="POST">
         {% csrf_token %}
 
-        <label for="phone0" class="title1">Довжина столу:</label>
+        <label for="phone0" class="title1">Довжина столу: max 2000mm min 1000mm</label>
         <input type="number" class="table_basket1" name="length_table" id="phone0" value="1000">
 
-        <label for="address0" class="title1">Ширина столу:</label>
+        <label for="address0" class="title1">Ширина столу: max 1200mm min 500mm</label>
         <input type="number" class="table_basket1" name="width_table" id="address0" value="600">
 
-        <label for="n1" class="title1">Висота столу:</label>
+        <label for="n1" class="title1">Висота столу: max 1200mm min 750mm</label>
         <input type="number" class="table_basket1" name="height_table" id="n1" value="850">
 
         <label for="n2" class="title1">Товщина стільниці:</label>
@@ -75,20 +81,18 @@
 
 
 {% else %}
-<div class="form_div">
-    <p class="title1">Щоб згенерувати кресленя потрібо авторизуватись</p>
-    <p class="title">Авторизація</p>
-    <form method="POST" role="form" action="{% url 'login' %}">
-        {% csrf_token %}
-        <input type="text" class="table_basket1" name="username" id="username0" placeholder="Ваш нікнейм">
-        <input type="password" class="table_basket1" name="password" id="password0" placeholder="Пароль">
-
-        <button type="submit" id="knopka">Війти</button>
-
-    </form>
+    <div class="form_div">
+        <h1 class="title3">Щоб згенерувати кресленя потрібо авторизуватись</h1>
     </div>
 
 {% endif %}
+
+<div class="prev_div">
+    <h1 class="title3">Стіл прямокутний: Square</h1>
+
+    <img class="img_table" src="{% static 'Drawing/img/table1.jpg' %}" alt="Alternative Text">
+
+</div>
 
 
 {% endblock %}
@@ -127,10 +131,7 @@
 
 </div>
 
-<h1 class="title">Модулі:</h1>
-    <div class="link">
+{% load static %}
 
-        <a class="title" href="{% url 'table' %}">Стіл прямокутний</a>
-    </div>
 
 {% endblock %}
