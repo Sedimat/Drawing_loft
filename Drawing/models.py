@@ -22,6 +22,7 @@ class DrawingTables(models.Model):
     picture = models.ImageField(upload_to='drw_p', default='drw_p/test.jpg')
     details = models.TextField(verbose_name="Інформація", default='test')
     published_date = models.DateTimeField(default=timezone.now, verbose_name="Час")
+    type = models.CharField(max_length=50,default="test", verbose_name="Тип столу")
 
 
     def __str__(self):

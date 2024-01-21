@@ -5,13 +5,11 @@
 
 {% if user.is_authenticated %}
 
-
-
 <div class="form_div">
 
     <h1 class="title2">{{ text }}</h1>
 
-    <form enctype="multipart/form-data" action="{% url 'table' %}" method="POST">
+    <form enctype="multipart/form-data" action="{% url 'table_A' %}" method="POST">
         {% csrf_token %}
 
         <label for="phone0" class="title1">Довжина столу: max 2000mm min 1000mm</label>
@@ -27,6 +25,14 @@
         <select name="thickness" id="n2" class="table_basket1">
             <option value="18">18 мм</option>
             <option value="36">36 мм</option>
+
+        </select>
+
+        <label for="n2v1" class="title1">Відступ наклону:</label>
+        <select name="len_incline" id="n2v1" class="table_basket1">
+            <option value="100">100</option>
+            <option value="75">75</option>
+            <option value="50">50</option>
 
         </select>
 
@@ -88,9 +94,9 @@
 {% endif %}
 
 <div class="prev_div">
-    <h1 class="title4">Стіл прямокутний: Square</h1>
+    <h1 class="title4">Стіл A подібний: Alpha</h1>
 
-    <img class="img_table" src="{% static 'Drawing/img/table1.jpg' %}" alt="Alternative Text">
+    <img class="img_table" src="{% static 'Drawing/img/table2.jpg' %}" alt="Alternative Text">
 
 </div>
 

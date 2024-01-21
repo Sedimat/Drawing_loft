@@ -98,6 +98,15 @@ footer{
     padding: 12px 12px 0px 12px;
 }
 
+.title4{
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    font-family: sans-serif;
+    margin: 10px 10px 10px 10px;
+    padding: 12px 12px 12px 12px;
+}
+
 .news{
     float: left;
     border-radius: 7px;
@@ -105,7 +114,7 @@ footer{
     margin: 10px 0px 10px 10px;
     padding: 0px;
     min-width: 300px;
-    height: 160px;
+    height: 180px;
 }
 
 .news_post{
@@ -210,6 +219,14 @@ input[type="radio"]:checked + .color-square {
     padding: 0px 10px 0px 10px;
     color: black;
     background-color: #27c400;
+    border-radius: 5px;
+    text-decoration: none;
+}
+#knopka01{
+    margin: 0px 0px 0px 50px;
+    padding: 5px 10px 5px 10px;
+    color: black;
+    background-color: #db9a18;
     border-radius: 5px;
     text-decoration: none;
 }

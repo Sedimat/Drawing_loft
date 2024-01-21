@@ -53,7 +53,7 @@ def table_gener(size):
     # name1 = f"{str(current_date)}_{str(current_time)[:8]}"
 
     random_prefix = ''.join(random.choices(string.ascii_lowercase, k=6))
-        # Создаем объект Canvas с размером страницы A4
+        # Создаем объект Canvas с размером страницы
     pdf_canvas = canvas.Canvas(f"{BASE_DIR}\\func\\1\\table_{random_prefix}.pdf",
                                    pagesize=(1500, 1000))
 
